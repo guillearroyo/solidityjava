@@ -1,0 +1,44 @@
+name: Java CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up JDK 11
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+          distribution: 'adopt'
+
+      - name: Que se duerma el proceso
+        run: sleep 4
+
+      - name: List files in the root directory
+        run: Get-ChildItem -Force
+
+      - name: List files in the app directory
+        run: Get-ChildItem -Force ./app
+
+      - name: Verify POM file exists
+        run: if (!(Test-Path -Path "./app/pom.xml")) { throw "POM file not found" }
+
+      - name: Build with Maven
+        run: mvn -f ./app/pom.xml clean install
+
+      - name: Run tests
+        run: mvn -f ./app/pom.xml test
+
+      - name: A que hora ha terminado el despliegue chicos / as
+        run: date
+
+      - name: Quiero ver si mi página funciona
+        run: curl -k "https://as.com&quot;
+
+      - name: Y ahora quiero saber con que version de git estoy trabajando
+        run: git version

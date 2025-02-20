@@ -1,0 +1,39 @@
+/**
+ * Main class of the Java program.
+ */
+
+public class FooCorporation {
+
+    public static void main(String[] args) {
+        
+        pay(7.50, 35);
+        pay(8.20, 47);
+        pay(10.0, 73);
+        
+    }
+
+    public static void pay(double base_pay, int hours){
+        
+        if (hours > 60){
+            System.out.println ("Error: tienes que trabajar menos horas");
+        }
+        
+        else if (8 > base_pay){
+            System.out.println ("Error: tienes que cobrar mas");
+        }
+        
+        else {
+            int trabajoExtra = 0;
+            
+            if (hours > 40) {
+            trabajoExtra = hours - 40;
+            System.out.println ("tu salario del mes es " + (base_pay *40) + (trabajoExtra * hours * base_pay) + "$");
+            }
+        }    
+        
+        
+        // Add your code here
+        
+    }
+    
+}
